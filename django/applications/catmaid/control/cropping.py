@@ -14,11 +14,14 @@ import glob
 from time import time
 from math import cos, sin, radians
 
-# The libuuid import is a workaround for a bug with GraphicsMagick
-# which expects the library to be loaded already. Therefore, it
-# has to be loaded before pgmagick.
-from pgmagick import Blob, Image, ImageList, Geometry, ChannelType, \
-        CompositeOperator as co
+try:
+    # The libuuid import is a workaround for a bug with GraphicsMagick
+    # which expects the library to be loaded already. Therefore, it
+    # has to be loaded before pgmagick.
+    from pgmagick import Blob, Image, ImageList, Geometry, ChannelType, \
+            CompositeOperator as co
+except ImportError, e:
+    print("Couldn't load pgmagick, cropping will not be available")
 
 from celery.task import task
 

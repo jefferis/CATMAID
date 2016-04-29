@@ -7,6 +7,11 @@ import base64
 from django.conf import settings
 
 try:
+    import h5py
+except ImportError, e:
+    print("Couldn't load h5py, HDF5 based tiles will not be available")
+
+try:
     from PIL import Image
 except:
     pass

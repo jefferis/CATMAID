@@ -6,6 +6,11 @@ import json
 import httplib
 import logging
 
+try:
+    import h5py
+except ImportError, e:
+    print("Couldn't load h5py, mesh model support will not be available")
+
 from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404

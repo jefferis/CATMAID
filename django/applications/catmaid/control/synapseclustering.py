@@ -3,7 +3,11 @@ from numpy import array, float32
 from numpy.linalg import norm
 import networkx as nx
 from collections import namedtuple
-from scipy.sparse.csgraph import dijkstra
+
+try:
+    from scipy.sparse.csgraph import dijkstra
+except ImportError, e:
+    print("Couldn't load scipy, synapse clustering won't be available")
 
 from catmaid.control.common import get_relation_to_id_map
 from catmaid.models import Treenode, TreenodeConnector, ClassInstance, Relation

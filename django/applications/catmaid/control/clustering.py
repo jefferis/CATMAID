@@ -1,7 +1,12 @@
 import json
 import logging
-import scipy.cluster.hierarchy as hier
-import scipy.spatial.distance as dist
+
+try:
+    import scipy.cluster.hierarchy as hier
+    import scipy.spatial.distance as dist
+except ImportError, e:
+    print("Couldn't load scipy, ontology clustering will not be available")
+
 import numpy as np
 
 from django import forms
